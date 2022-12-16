@@ -5,6 +5,7 @@ class WebapiController < ApplicationController
   protect_from_forgery with: :null_session
 
   def create
+    p env['rack.input'].read.bytesize.to_s
     p request.headers['CONTENT_LENGTH']
     p request.headers['TRANSFER_ENCODING']
     p request.body

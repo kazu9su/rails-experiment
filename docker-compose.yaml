@@ -4,11 +4,9 @@ services:
     build:
       context: .
       dockerfile: ./Dockerfile.rails
-    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 8080 -b '0.0.0.0'"
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     volumes:
       - ./railsapp:/app
-    ports:
-      - "3001:8080"
     restart: always
     tty: true
     stdin_open: true
@@ -16,11 +14,9 @@ services:
     build:
       context: .
       dockerfile: ./Dockerfile.rails
-    command: bash -c "./bin/unicorn --config-file config/unicorn.rb"
+    command: bash -c "./bin/unicorn --config-file config/unicorn.rb -p 3000"
     volumes:
       - ./railsapp:/app
-    ports:
-      - "3000:8080"
     restart: always
     tty: true
     stdin_open: true
