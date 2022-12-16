@@ -1,0 +1,38 @@
+version: '3.9'
+services:
+  pumaapp:
+    build:
+      context: .
+      dockerfile: ./Dockerfile.rails
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 8080 -b '0.0.0.0'"
+    volumes:
+      - ./railsapp:/app
+    ports:
+      - "3001:8080"
+    restart: always
+    tty: true
+    stdin_open: true
+  unicornapp:
+    build:
+      context: .
+      dockerfile: ./Dockerfile.rails
+    command: bash -c "./bin/unicorn --config-file config/unicorn.rb"
+    volumes:
+      - ./railsapp:/app
+    ports:
+      - "3000:8080"
+    restart: always
+    tty: true
+    stdin_open: true
+
+  nginx:
+    image: openresty/openresty
+    volumes:
+    - ./conf.d:/etc/nginx/conf.d
+    - ./openresty/nginx.conf:/usr/local/openresty/nginx/conf/nginx.conf
+  yaichi:
+    image: mtsmfm/yaichi:1.7.0
+    ports:
+      - 80:3000
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
