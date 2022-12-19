@@ -1,22 +1,32 @@
 version: '3.9'
 services:
-  pumaapp:
+  puma_4_3_3_app:
     build:
       context: .
-      dockerfile: ./Dockerfile.rails
+      dockerfile: ./Dockerfile.rails_puma_4_3_3
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     volumes:
-      - ./railsapp:/app
+      - ./railsapp_puma_4_3_3:/app
     restart: always
     tty: true
     stdin_open: true
-  unicornapp:
+  puma_5_6_5_app:
     build:
       context: .
-      dockerfile: ./Dockerfile.rails
+      dockerfile: ./Dockerfile.rails_puma_5_6_5
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    volumes:
+      - ./railsapp_puma_5_6_5:/app
+    restart: always
+    tty: true
+    stdin_open: true
+  unicorn_6_1_0_app:
+    build:
+      context: .
+      dockerfile: ./Dockerfile.rails_unicorn_6_1_0
     command: bash -c "./bin/unicorn --config-file config/unicorn.rb -p 3000"
     volumes:
-      - ./railsapp:/app
+      - ./railsapp_unicorn_6_1_0:/app
     restart: always
     tty: true
     stdin_open: true
