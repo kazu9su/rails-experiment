@@ -22,6 +22,12 @@ $ docker-compose build
 $ docker-compose run --rm puma_5_6_5_app bash
 ```
 
+### Accessable containers
+
+* puma_4_3_3_app
+* puma_5_6_5_app
+* unicorn_6_1_0_app
+
 ### Curl
 
 ```
