@@ -8,7 +8,7 @@ $ docker-compose build
 ```
 
 ```
-$ docker-compose build
+$ docker-compose up
 ```
 
 ## Exec the curl on the container
