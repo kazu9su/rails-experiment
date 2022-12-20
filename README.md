@@ -31,7 +31,7 @@ $ docker-compose run --rm puma_5_6_5_app bash
 ### Curl
 
 ```
-$ dd if=/dev/zero bs=1 count=10 | curl puma_5_6_5_app:3000/webapi -X POST  -H 'Content-Length: 3' -H 'Transfer-Encoding: chunked' --data-binary @-
+$ dd if=/dev/zero bs=1 count=10 | curl puma_5_6_5_app:3000/webapi -X POST  -H 'Transfer-Encoding: chunked' --data-binary @-
 ```
 
 And you can see the result on the log like this
