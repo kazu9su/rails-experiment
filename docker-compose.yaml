@@ -40,4 +40,14 @@ services:
     restart: always
     tty: true
     stdin_open: true
+  webrick_1_7_0_app:
+    build:
+      context: .
+      dockerfile: ./Dockerfile.rails_webrick_1_7_0
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0' -u webrick"
+    volumes:
+      - ./railsapp_webrick_1_7_0:/app
+    restart: always
+    tty: true
+    stdin_open: true
 

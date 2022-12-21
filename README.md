@@ -28,6 +28,7 @@ $ docker-compose run --rm puma_5_6_5_app bash
 * puma_5_6_5_app
 * unicorn_6_1_0_app
 * thin_1_8_1_app
+* webrick_1_7_0_app
 
 ### Curl
 
