@@ -10,7 +10,6 @@ class WebapiController < ApplicationController
     p "request.headers['CONTENT_LENGTH']: #{request.headers['CONTENT_LENGTH']}"
     p "request.body: #{request.body}"
     request.body.rewind
-    p "request.body: #{request.content_length}"
     p "request.raw_post: #{request.raw_post}"
 
     head :ok
