@@ -31,17 +31,17 @@ $ docker-compose run --rm puma_5_6_5_app bash
 ### Curl
 
 ```
-$ dd if=/dev/zero bs=1 count=10 | curl puma_5_6_5_app:3000/webapi -X POST  -H 'Transfer-Encoding: chunked' --data-binary @-
+$ dd if=/dev/zero bs=1 count=10 | curl unicorn_6_1_0_app:3000/webapi -X POST  -H 'Transfer-Encoding: chunked' --data-binary @-
 ```
 
 And you can see the result on the log like this
 
 ```
-rails-experiment-puma_5_6_5_app-1     | "rack.input: \u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000"
-rails-experiment-puma_5_6_5_app-1     | "request.headers['CONTENT_LENGTH']: 10"
-rails-experiment-puma_5_6_5_app-1     | "request.body: #<File:0x0000aaaaeeade910>"
-rails-experiment-puma_5_6_5_app-1     | "request.raw_post: \u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000"
-rails-experiment-puma_5_6_5_app-1     | Completed 200 OK in 18ms (ActiveRecord: 0.0ms | Allocations: 2556)
+rails-experiment-unicorn_6_1_0_app-1  | "rack.input: \u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000"
+rails-experiment-unicorn_6_1_0_app-1  | "request.headers['CONTENT_LENGTH']: "
+rails-experiment-unicorn_6_1_0_app-1  | "request.body: #<Rack::Lint::InputWrapper:0x0000aaab109b4428>"
+rails-experiment-unicorn_6_1_0_app-1  | "request.raw_post: "
+rails-experiment-unicorn_6_1_0_app-1  | 172.22.0.5 - - [21/Dec/2022:02:38:23 +0000] "POST /webapi HTTP/1.1" 200 - 0.0226
 ```
 
 
