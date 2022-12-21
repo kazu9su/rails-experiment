@@ -30,17 +30,6 @@ services:
     restart: always
     tty: true
     stdin_open: true
-  ruby_2_7_4_unicorn_6_1_0_app:
-    build:
-      context: .
-      dockerfile: ./Dockerfile.ruby_2_7_4_rails_unicorn_6_1_0
-    command: bash -c "./bin/unicorn --config-file config/unicorn.rb -p 3000"
-    volumes:
-      - ./railsapp_ruby_2_7_4_unicorn_6_1_0:/app
-    restart: always
-    tty: true
-    stdin_open: true
-
   thin_1_8_1_app:
     build:
       context: .
